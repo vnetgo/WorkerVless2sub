@@ -8,6 +8,9 @@ let addressesnotlsapi = [];
 
 let addressescsv = [];
 let DLS = 7;
+let rename = 'CF优选 🚀 ';
+let countrynum = 3;
+let citynum = 4;
 let remarkIndex = 1;//CSV备注所在列偏移量
 
 let subConverter = 'SUBAPI.fxxk.dedyn.io';
@@ -181,7 +184,9 @@ async function 整理测速结果(tls) {
 					const ipAddress = row[0];
 					const port = row[1];
 					const dataCenter = row[tlsIndex + remarkIndex];
-					const formattedAddress = `${ipAddress}:${port}#${dataCenter}`;
+					const countryIndex=row[tlsIndex + countrynum];
+					const cityIndex=row[tlsIndex + citynum];
+				        const formattedAddress = `${ipAddress}:${port}#${countryIndex}-${dataCenter}-${cityIndex}`;
 					
 					// 处理代理IP池
 					if (csvUrl.includes('proxyip=true') && 
@@ -867,13 +872,13 @@ export default {
 				}
 
 				if (协议类型 == 'VMess'){
-					const vmessLink = `vmess://${utf8ToBase64(`{"v":"2","ps":"${addressid + 节点备注}","add":"${address}","port":"${port}","id":"${uuid}","aid":"${额外ID}","scy":"${加密方式}","net":"ws","type":"${type}","host":"${伪装域名}","path":"${最终路径}","tls":"tls","sni":"${sni}","alpn":"${encodeURIComponent(alpn)}","fp":""}`)}`;
+					const vmessLink = `vmess://${utf8ToBase64(`{"v":"2","ps":"${rename + addressid + 节点备注}","add":"${address}","port":"${port}","id":"${uuid}","aid":"${额外ID}","scy":"${加密方式}","net":"ws","type":"${type}","host":"${伪装域名}","path":"${最终路径}","tls":"tls","sni":"${sni}","alpn":"${encodeURIComponent(alpn)}","fp":""}`)}`;
 					return vmessLink;
 				} else if (协议类型 == atob('VHJvamFu')){
-					const 特洛伊Link = `${atob('dHJvamFuOi8v') + uuid}@${address}:${port + atob('P3NlY3VyaXR5PXRscyZzbmk9') + sni}&alpn=${encodeURIComponent(alpn)}&fp=randomized&type=${type}&host=${伪装域名}&path=${encodeURIComponent(最终路径)}#${encodeURIComponent(addressid + 节点备注)}`;
+					const 特洛伊Link = `${atob('dHJvamFuOi8v') + uuid}@${address}:${port + atob('P3NlY3VyaXR5PXRscyZzbmk9') + sni}&alpn=${encodeURIComponent(alpn)}&fp=randomized&type=${type}&host=${伪装域名}&path=${encodeURIComponent(最终路径)}#${encodeURIComponent(rename + addressid + 节点备注)}`;
 					return 特洛伊Link;
 				} else {
-					const 维列斯Link = `${atob('dmxlc3M6Ly8=') + uuid}@${address}:${port + atob('P2VuY3J5cHRpb249bm9uZSZzZWN1cml0eT10bHMmc25pPQ==') + sni}&alpn=${encodeURIComponent(alpn)}&fp=random&type=${type}&host=${伪装域名}&path=${encodeURIComponent(最终路径)}#${encodeURIComponent(addressid + 节点备注)}`;
+					const 维列斯Link = `${atob('dmxlc3M6Ly8=') + uuid}@${address}:${port + atob('P2VuY3J5cHRpb249bm9uZSZzZWN1cml0eT10bHMmc25pPQ==') + sni}&alpn=${encodeURIComponent(alpn)}&fp=random&type=${type}&host=${伪装域名}&path=${encodeURIComponent(最终路径)}#${encodeURIComponent(rename + addressid + 节点备注)}`;
 					return 维列斯Link;
 				}
 
